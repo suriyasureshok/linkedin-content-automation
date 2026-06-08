@@ -1,8 +1,8 @@
-from integrations.telegram import (
+from src.integrations.telegram import (
     TelegramClient
 )
 
-from storage.github_issues import (
+from src.storage.github_issues import (
     GitHubIssueStateManager
 )
 

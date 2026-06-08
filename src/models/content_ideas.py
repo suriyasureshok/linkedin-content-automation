@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from .content_idea import ContentIdea
+from src.models.content_idea import ContentIdea
 
 
 class ContentIdeasResponse(BaseModel):

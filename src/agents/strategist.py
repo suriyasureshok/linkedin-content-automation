@@ -1,9 +1,9 @@
 from pathlib import Path
 import json
 
-from integrations.gemini import GeminiClient
-from models.content_ideas import ContentIdeasResponse
-from models.research import ResearchResponse
+from src.integrations.gemini import GeminiClient
+from src.models.content_ideas import ContentIdeasResponse
+from src.models.research import ResearchResponse
 
 
 class StrategistAgent:

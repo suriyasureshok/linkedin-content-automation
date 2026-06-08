@@ -1,7 +1,7 @@
 from pathlib import Path
 
-from integrations.gemini import GeminiClient
-from models.research import ResearchResponse
+from src.integrations.gemini import GeminiClient
+from src.models.research import ResearchResponse
 
 
 class ResearchAgent:

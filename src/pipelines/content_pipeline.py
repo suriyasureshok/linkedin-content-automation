@@ -1,8 +1,8 @@
-from agents.researcher import ResearchAgent
-from agents.strategist import StrategistAgent
-from agents.writer import WriterAgent
+from src.agents.researcher import ResearchAgent
+from src.agents.strategist import StrategistAgent
+from src.agents.writer import WriterAgent
 
-from delivery.delivery_manager import DeliveryManager
+from src.delivery.delivery_manager import DeliveryManager
 
 
 class ContentPipeline:

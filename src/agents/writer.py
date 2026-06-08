@@ -3,9 +3,9 @@ from pathlib import Path
 
 from integrations.gemini import GeminiClient
 
-from models.research import ResearchResponse
-from models.content_idea import ContentIdea
-from models.linkedin_posts import LinkedInPostsResponse
+from src.models.research import ResearchResponse
+from src.models.content_idea import ContentIdea
+from src.models.linkedin_posts import LinkedInPostsResponse
 
 
 class WriterAgent:

@@ -4,9 +4,9 @@ from dotenv import load_dotenv
 from google import genai
 from google.genai import types
 
-from models.research import ResearchResponse
-from models.content_ideas import ContentIdeasResponse
-from models.linkedin_posts import LinkedInPostsResponse
+from src.models.research import ResearchResponse
+from src.models.content_ideas import ContentIdeasResponse
+from src.models.linkedin_posts import LinkedInPostsResponse
 
 load_dotenv()
 

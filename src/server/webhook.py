@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from pydantic import BaseModel
 
-from integrations.telegram import TelegramClient
-from pipelines.content_pipeline import ContentPipeline
-from storage.github_issues import GitHubIssueManager
+from src.integrations.telegram import TelegramClient
+from src.pipelines.content_pipeline import ContentPipeline
+from src.storage.github_issues import GitHubIssueStateManager
 
 
 app = FastAPI()
@@ -44,7 +44,7 @@ async def telegram_webhook(
         topic=parsed["topic"]
     )
 
-    GitHubIssueManager.complete_sprint()
+    GitHubIssueStateManager.complete_sprint()
 
     return {
         "status": "success"

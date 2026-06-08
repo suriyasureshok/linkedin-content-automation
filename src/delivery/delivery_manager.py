@@ -1,6 +1,5 @@
-from integrations.telegram import TelegramClient
-
-from models.linkedin_posts import LinkedInPostsResponse
+from src.integrations.telegram import TelegramClient
+from src.models.linkedin_posts import LinkedInPostsResponse
 
 
 class DeliveryManager:

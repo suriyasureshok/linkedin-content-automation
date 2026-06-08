@@ -4,7 +4,7 @@ import requests
 
 from dotenv import load_dotenv
 
-from storage.github_issues import GitHubIssueStateManager
+from src.storage.github_issues import GitHubIssueStateManager
 
 load_dotenv()
 

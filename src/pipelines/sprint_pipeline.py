@@ -1,5 +1,5 @@
-from integrations.telegram import TelegramClient
-from storage.github_issues import GitHubIssueStateManager
+from src.integrations.telegram import TelegramClient
+from src.storage.github_issues import GitHubIssueStateManager
 
 
 class SprintPipeline:

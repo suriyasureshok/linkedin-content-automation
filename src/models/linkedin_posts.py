@@ -1,6 +1,6 @@
 from pydantic import BaseModel, Field
 
-from .linkedin_post import LinkedInPost
+from src.models.linkedin_post import LinkedInPost
 
 
 class LinkedInPostsResponse(BaseModel):
