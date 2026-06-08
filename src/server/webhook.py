@@ -15,6 +15,13 @@ class TelegramMessage(BaseModel):
     text: str
 
 
+@app.get("/health")
+async def health():
+
+    return {
+        "status": "ok"
+    }
+
 @app.post("/telegram")
 async def telegram_webhook(
     payload: TelegramMessage
