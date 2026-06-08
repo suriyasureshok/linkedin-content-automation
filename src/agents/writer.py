@@ -1,8 +1,7 @@
 import json
 from pathlib import Path
 
-from integrations.gemini import GeminiClient
-
+from src.integrations.gemini import GeminiClient
 from src.models.research import ResearchResponse
 from src.models.content_idea import ContentIdea
 from src.models.linkedin_posts import LinkedInPostsResponse
