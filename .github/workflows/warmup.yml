@@ -14,5 +14,5 @@ jobs:
 
       - name: Warm Render
         run: |
-          curl https://YOUR_RENDER_URL.onrender.com/health
+          curl https://linkedin-content-creator.onrender.com
           
