@@ -1,0 +1,40 @@
+name: Start Sprint
+
+on:
+  schedule:
+    - cron: "30 3 * * 1"
+
+  workflow_dispatch:
+
+jobs:
+
+  sprint:
+
+    runs-on: ubuntu-latest
+
+    steps:
+
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - run: |
+          pip install -r requirements.txt
+
+      - run: |
+          python src/run_sprint.py
+        env:
+          # Telegram Bot Configuration
+            TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+            TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+
+            # Gemini API Configuration
+            RESEARCH_GEMINI_API_KEY: ${{ secrets.RESEARCH_GEMINI_API_KEY }}
+            CONTENT_IDEAS_GEMINI_API_KEY: ${{ secrets.CONTENT_IDEAS_GEMINI_API_KEY }}
+            WRITER_GEMINI_API_KEY_1: ${{ secrets.WRITER_GEMINI_API_KEY_1 }}
+            WRITER_GEMINI_API_KEY_2: ${{ secrets.WRITER_GEMINI_API_KEY_2 }}
+
+            # Gemini Model Configuration
+            GEMINI_MODEL: ${{ secrets.GEMINI_MODEL }}
