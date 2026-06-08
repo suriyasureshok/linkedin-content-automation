@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request, BackgroundTasks
 from pydantic import BaseModel
 
 from src.integrations.telegram import TelegramClient
@@ -10,6 +10,17 @@ app = FastAPI()
 
 pipeline = ContentPipeline()
 
+def run_generation(parsed):
+
+    pipeline.run(
+        category=parsed["category"],
+        subject=parsed["subject"],
+        topic=parsed["topic"]
+    )
+
+    state = GitHubIssueStateManager()
+
+    state.complete_sprint()
 
 class TelegramMessage(BaseModel):
     text: str
@@ -24,28 +35,34 @@ async def health():
 
 @app.post("/telegram")
 async def telegram_webhook(
-    payload: TelegramMessage
+    request: Request,
+    background_tasks: BackgroundTasks
 ):
 
-    text = payload.text
+    payload = await request.json()
+
+    message = payload.get("message")
+
+    if not message:
+        return {"status": "ignored"}
+
+    text = message.get("text")
+
+    if not text:
+        return {"status": "ignored"}
 
     parsed = TelegramClient.process_message(
         text
     )
 
     if not parsed:
-        return {
-            "status": "ignored"
-        }
+        return {"status": "ignored"}
 
-    pipeline.run(
-        category=parsed["category"],
-        subject=parsed["subject"],
-        topic=parsed["topic"]
+    background_tasks.add_task(
+        run_generation,
+        parsed
     )
 
-    GitHubIssueStateManager.complete_sprint()
-
     return {
-        "status": "success"
+        "status": "accepted"
     }
