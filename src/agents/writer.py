@@ -22,15 +22,10 @@ class WriterAgent:
         self.generated_dir.mkdir(parents=True, exist_ok=True)
 
     def _build_prompt(
-        self,
-        research: ResearchResponse,
-        ideas: list[ContentIdea]
+        self, research: ResearchResponse, ideas: list[ContentIdea]
     ) -> str:
 
-        ideas_json = [
-            idea.model_dump()
-            for idea in ideas
-        ]
+        ideas_json = [idea.model_dump() for idea in ideas]
 
         return f"""
     {self.prompt_template}
@@ -70,6 +65,6 @@ class WriterAgent:
     def save(self, sprint_id: str, posts: LinkedInPostsResponse):
 
         output_file = self.generated_dir / f"{sprint_id}.json"
-        
+
         with open(output_file, "w", encoding="utf-8") as file:
             file.write(posts.model_dump_json(indent=4))

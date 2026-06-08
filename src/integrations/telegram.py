@@ -21,16 +21,9 @@ class TelegramClient:
 
         url = f"{BASE_URL}/sendMessage"
 
-        payload = {
-            "chat_id": CHAT_ID,
-            "text": message
-        }
+        payload = {"chat_id": CHAT_ID, "text": message}
 
-        response = requests.post(
-            url,
-            json=payload,
-            timeout=30
-        )
+        response = requests.post(url, json=payload, timeout=30)
 
         response.raise_for_status()
 
@@ -40,12 +33,7 @@ class TelegramClient:
         chunk_size = 3500
 
         chunks = [
-            message[i:i + chunk_size]
-            for i in range(
-                0,
-                len(message),
-                chunk_size
-            )
+            message[i : i + chunk_size] for i in range(0, len(message), chunk_size)
         ]
 
         for chunk in chunks:
@@ -75,29 +63,13 @@ Topic: Memory Management
     @staticmethod
     def parse_topic_message(text: str):
 
-        category_match = re.search(
-            r"Category:\s*(.+)",
-            text,
-            re.IGNORECASE
-        )
+        category_match = re.search(r"Category:\s*(.+)", text, re.IGNORECASE)
 
-        subject_match = re.search(
-            r"Subject:\s*(.+)",
-            text,
-            re.IGNORECASE
-        )
+        subject_match = re.search(r"Subject:\s*(.+)", text, re.IGNORECASE)
 
-        topic_match = re.search(
-            r"Topic:\s*(.+)",
-            text,
-            re.IGNORECASE
-        )
+        topic_match = re.search(r"Topic:\s*(.+)", text, re.IGNORECASE)
 
-        if not (
-            category_match
-            and subject_match
-            and topic_match
-        ):
+        if not (category_match and subject_match and topic_match):
             return None
 
         return {
@@ -113,15 +85,11 @@ Topic: Memory Management
 
         if state.get_status() != "WAITING":
 
-            TelegramClient.send_message(
-                "[WARNING] No active sprint waiting for topic."
-            )
+            TelegramClient.send_message("[WARNING] No active sprint waiting for topic.")
 
             return None
 
-        parsed = TelegramClient.parse_topic_message(
-            text
-        )
+        parsed = TelegramClient.parse_topic_message(text)
 
         if not parsed:
 
@@ -142,7 +110,7 @@ Topic: ...
         state.save_topic(
             category=parsed["category"],
             subject=parsed["subject"],
-            topic=parsed["topic"]
+            topic=parsed["topic"],
         )
 
         TelegramClient.send_message(
@@ -162,6 +130,4 @@ Starting content generation...
     @staticmethod
     def parse_message_only(text: str):
 
-        return TelegramClient.parse_topic_message(
-            text
-        )
+        return TelegramClient.parse_topic_message(text)

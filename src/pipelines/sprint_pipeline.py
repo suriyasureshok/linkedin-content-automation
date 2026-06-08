@@ -13,4 +13,3 @@ class SprintPipeline:
         GitHubIssueStateManager.create_sprint()
 
         self.telegram.ask_for_topic()
-        

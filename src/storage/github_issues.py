@@ -12,9 +12,7 @@ class GitHubIssueStateManager:
 
     def __init__(self):
 
-        github = Github(
-            os.getenv("GITHUB_TOKEN")
-        )
+        github = Github(os.getenv("GITHUB_TOKEN"))
 
         self.repo = github.get_repo(
             f"{os.getenv('GITHUB_REPO_OWNER')}/{os.getenv('GITHUB_REPO_NAME')}"
@@ -22,9 +20,7 @@ class GitHubIssueStateManager:
 
     def create_sprint(self):
 
-        sprint_id = datetime.now().strftime(
-            "%Y-%m-%d"
-        )
+        sprint_id = datetime.now().strftime("%Y-%m-%d")
 
         issue = self.repo.create_issue(
             title=f"Sprint-{sprint_id}",
@@ -37,38 +33,23 @@ Topic:
 
 CreatedAt:
 {datetime.now().isoformat()}
-"""
+""",
         )
 
         return issue.number
 
     def get_latest_sprint(self):
 
-        issues = list(
-            self.repo.get_issues(
-                state="open"
-            )
-        )
+        issues = list(self.repo.get_issues(state="open"))
 
-        sprint_issues = [
-            issue
-            for issue in issues
-            if issue.title.startswith(
-                "Sprint-"
-            )
-        ]
+        sprint_issues = [issue for issue in issues if issue.title.startswith("Sprint-")]
 
         if not sprint_issues:
             return None
 
         return sprint_issues[0]
 
-    def save_topic(
-        self,
-        category,
-        subject,
-        topic
-    ):
+    def save_topic(self, category, subject, topic):
 
         issue = self.get_latest_sprint()
 
@@ -91,9 +72,7 @@ Topic:
 
         issue = self.get_latest_sprint()
 
-        issue.edit(
-            state="closed"
-        )
+        issue.edit(state="closed")
 
     def get_status(self):
 

@@ -10,17 +10,17 @@ app = FastAPI()
 
 pipeline = ContentPipeline()
 
+
 def run_generation(parsed):
 
     pipeline.run(
-        category=parsed["category"],
-        subject=parsed["subject"],
-        topic=parsed["topic"]
+        category=parsed["category"], subject=parsed["subject"], topic=parsed["topic"]
     )
 
     state = GitHubIssueStateManager()
 
     state.complete_sprint()
+
 
 class TelegramMessage(BaseModel):
     text: str
@@ -29,15 +29,11 @@ class TelegramMessage(BaseModel):
 @app.get("/health")
 async def health():
 
-    return {
-        "status": "ok"
-    }
+    return {"status": "ok"}
+
 
 @app.post("/telegram")
-async def telegram_webhook(
-    request: Request,
-    background_tasks: BackgroundTasks
-):
+async def telegram_webhook(request: Request, background_tasks: BackgroundTasks):
 
     payload = await request.json()
 
@@ -51,18 +47,11 @@ async def telegram_webhook(
     if not text:
         return {"status": "ignored"}
 
-    parsed = TelegramClient.process_message(
-        text
-    )
+    parsed = TelegramClient.process_message(text)
 
     if not parsed:
         return {"status": "ignored"}
 
-    background_tasks.add_task(
-        run_generation,
-        parsed
-    )
+    background_tasks.add_task(run_generation, parsed)
 
-    return {
-        "status": "accepted"
-    }
+    return {"status": "accepted"}

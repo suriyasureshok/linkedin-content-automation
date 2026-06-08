@@ -15,45 +15,22 @@ class ContentPipeline:
 
         self.delivery_manager = DeliveryManager()
 
-    def run(
-        self,
-        category: str,
-        subject: str,
-        topic: str
-    ):
+    def run(self, category: str, subject: str, topic: str):
 
         research = self.research_agent.run(
-            category=category,
-            subject=subject,
-            topic=topic
+            category=category, subject=subject, topic=topic
         )
 
-        self.research_agent.save(
-            sprint_id=topic,
-            research=research
-        )
+        self.research_agent.save(sprint_id=topic, research=research)
 
-        ideas = self.strategist_agent.run(
-            research
-        )
+        ideas = self.strategist_agent.run(research)
 
-        self.strategist_agent.save(
-            sprint_id=topic,
-            ideas=ideas
-        )
+        self.strategist_agent.save(sprint_id=topic, ideas=ideas)
 
-        posts = self.writer_agent.run(
-            research,
-            ideas
-        )
+        posts = self.writer_agent.run(research, ideas)
 
-        self.writer_agent.save(
-            sprint_id=topic,
-            posts=posts
-        )
+        self.writer_agent.save(sprint_id=topic, posts=posts)
 
-        self.delivery_manager.deliver(
-            posts
-        )
+        self.delivery_manager.deliver(posts)
 
         return posts

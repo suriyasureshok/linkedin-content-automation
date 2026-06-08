@@ -43,7 +43,6 @@ TOPIC:
     def save(self, sprint_id: str, research: ResearchResponse) -> None:
 
         output_file = self.generated_dir / f"{sprint_id}.json"
-        
+
         with open(output_file, "w", encoding="utf-8") as file:
             file.write(research.model_dump_json(indent=4))
-            

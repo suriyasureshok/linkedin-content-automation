@@ -8,19 +8,13 @@ class DeliveryManager:
 
         self.telegram = TelegramClient()
 
-    def deliver(
-        self,
-        posts: LinkedInPostsResponse
-    ):
+    def deliver(self, posts: LinkedInPostsResponse):
 
         self.telegram.send_message(
             f"[SUCCESS] Generated {len(posts.posts)} LinkedIn Posts"
         )
 
-        for index, post in enumerate(
-            posts.posts,
-            start=1
-        ):
+        for index, post in enumerate(posts.posts, start=1):
 
             message = f"""
 POST #{index}
@@ -34,10 +28,6 @@ TITLE:
 {post.body}
 """
 
-            self.telegram.send_long_message(
-                message
-            )
+            self.telegram.send_long_message(message)
 
-        self.telegram.send_message(
-            "[COMPLETED] Delivery Completed"
-        )
+        self.telegram.send_message("[COMPLETED] Delivery Completed")
