@@ -1,5 +1,5 @@
 from integrations.telegram import TelegramClient
-from state.manager import SprintStateManager
+from storage.github_issues import GitHubIssueStateManager
 
 
 class SprintPipeline:
@@ -10,7 +10,7 @@ class SprintPipeline:
 
     def run(self):
 
-        SprintStateManager.create_sprint()
+        GitHubIssueStateManager.create_sprint()
 
         self.telegram.ask_for_topic()
         

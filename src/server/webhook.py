@@ -3,7 +3,7 @@ from pydantic import BaseModel
 
 from integrations.telegram import TelegramClient
 from pipelines.content_pipeline import ContentPipeline
-from state.manager import SprintStateManager
+from storage.github_issues import GitHubIssueManager
 
 
 app = FastAPI()
@@ -37,7 +37,7 @@ async def telegram_webhook(
         topic=parsed["topic"]
     )
 
-    SprintStateManager.complete_sprint()
+    GitHubIssueManager.complete_sprint()
 
     return {
         "status": "success"
