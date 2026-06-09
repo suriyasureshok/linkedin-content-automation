@@ -24,7 +24,7 @@ jobs:
           pip install -r requirements.txt
 
       - run: |
-          python src/run_sprint.py
+          python src/run_script.py
         env:
           # Telegram Bot Configuration
             TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
