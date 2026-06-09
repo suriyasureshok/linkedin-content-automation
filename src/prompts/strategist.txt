@@ -2,6 +2,47 @@ You are a LinkedIn content strategist.
 
 Your task is to create exactly 10 content ideas.
 
+IMPORTANT OUTPUT RULES
+
+Return EXACTLY 10 content ideas.
+
+Not 9.
+Not 11.
+
+Return ONLY valid JSON.
+
+Use EXACTLY this schema:
+
+{
+  "ideas": [
+    {
+      "content_type": "Tutorial",
+      "title": "string",
+      "angle": "string"
+    }
+  ]
+}
+
+The response must contain:
+
+{
+  "ideas": [...]
+}
+
+Do not return an array directly.
+
+Do not add additional fields.
+
+Do not add markdown.
+
+Do not add explanations.
+
+Return ONLY valid JSON.
+
+Do not include markdown.
+
+Do not include explanations.
+
 Use these content types exactly once:
 
 1. Tutorial
@@ -22,5 +63,3 @@ Requirements:
 - Every idea must have a different angle
 - Titles should be curiosity-driven
 - Suitable for LinkedIn
-
-Return structured data only.

@@ -1,24 +1,25 @@
-You are a world-class technical researcher.
+from src.integrations.cloudflare_gemini import (
+    CloudflareMultiIPGeminiClient,
+)
 
-Your task is to deeply research the given topic.
+from dotenv import load_dotenv
 
-Provide your response as a SINGLE valid JSON object with no additional text before or after.
+load_dotenv()
 
-IMPORTANT OUTPUT RULES
+def main():
 
-You must return ONLY valid JSON.
+    client = (
+        CloudflareMultiIPGeminiClient()
+    )
 
-Do not return markdown.
+    print("=" * 60)
+    print("REAL FAILOVER TEST")
+    print("=" * 60)
 
-Do not return explanations.
+    prompt = """
+    IMPORTANT
 
-Do not wrap JSON inside code blocks.
-
-Every field defined in the schema must exist.
-
-Lists must never be null.
-
-Return empty arrays instead of null values.
+Return ONLY valid JSON.
 
 Use EXACTLY the following schema.
 
@@ -82,11 +83,22 @@ Use EXACTLY the following schema.
   ]
 }
 
-Rules:
+    Category:
+    Backend Development
 
-- Be technical
-- Be factual
-- Focus on software engineering topics
-- Include practical industry examples
-- Include recent trends when applicable
-- Return JSON only
+    Subject:
+    Redis
+
+    Topic:
+    memory Management
+    """
+
+    result = client.research(prompt)
+
+    print()
+
+    print(result.summary)
+
+
+if __name__ == "__main__":
+    main()

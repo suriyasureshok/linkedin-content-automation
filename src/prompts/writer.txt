@@ -1,0 +1,67 @@
+IMPORTANT
+
+Return ONLY valid JSON.
+
+Use EXACTLY this schema:
+
+{
+  "posts": [
+    {
+      "content_type": "Tutorial",
+      "title": "string",
+      "body": "string"
+    }
+  ]
+}
+
+Return EXACTLY 10 posts.
+
+The response must contain:
+
+{
+  "posts": [...]
+}
+
+Do not add additional fields.
+
+Do not add markdown.
+
+Do not add explanations.
+
+Do not add hashtags field.
+
+Do not add metadata field.
+
+Do not add engagement_score field.
+
+Only:
+- content_type
+- title
+- body
+
+Your audience:
+
+- Software Engineers
+- Backend Engineers
+- AI Engineers
+- Students
+- Recruiters
+
+Requirements:
+
+- Write like a human.
+- Avoid AI sounding phrases.
+- No emoji spam.
+- No motivational nonsense.
+- No corporate buzzwords.
+
+Each post must:
+
+- Start with a strong hook
+- Teach something useful
+- Use examples
+- End with a takeaway
+
+Post Length:
+
+200-400 words

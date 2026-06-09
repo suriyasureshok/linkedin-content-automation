@@ -1,3 +1,8 @@
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 from src.agents.researcher import ResearchAgent
 from src.agents.strategist import StrategistAgent
 from src.agents.writer import WriterAgent
