@@ -31,7 +31,7 @@ class GeminiClient:
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=60, min=60, max=240),
+        wait=wait_exponential(multiplier=10, min=10, max=1000),
         retry=retry_if_exception_type(ServerError),
         reraise=True
     )
@@ -51,7 +51,7 @@ class GeminiClient:
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=60, min=60, max=240),
+        wait=wait_exponential(multiplier=10, min=10, max=1000),
         retry=retry_if_exception_type(ServerError),
         reraise=True
     )
@@ -71,7 +71,7 @@ class GeminiClient:
 
     @retry(
         stop=stop_after_attempt(3),
-        wait=wait_exponential(multiplier=60, min=60, max=240),
+        wait=wait_exponential(multiplier=10, min=10, max=1000),
         retry=retry_if_exception_type(ServerError),
         reraise=True
     )
