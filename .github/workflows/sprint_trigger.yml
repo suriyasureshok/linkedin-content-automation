@@ -2,7 +2,7 @@ name: Start Sprint
 
 on:
   schedule:
-    - cron: "30 3 * * 2"
+    - cron: "30 4 * * 2"
 
   workflow_dispatch:
 
