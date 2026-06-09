@@ -4,6 +4,8 @@ on:
   schedule:
     - cron: "10,15,20,25 4 * * 2"
 
+  workflow_dispatch:
+
 jobs:
 
   warmup:
